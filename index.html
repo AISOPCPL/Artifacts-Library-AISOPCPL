@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Avaniysh | Artifact Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --orange: #f28c1e; /* logo orange */
+        --orange-deep: #b95f00;
+        --ink: #121212; /* logo black */
+        --ivory: #fbf9f5;
+        --paper: #ffffff;
+        --muted: #7b756b;
+        --hair: #e8e2d7;
+        --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+        --sans:
+          "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--ivory);
+        color: var(--ink);
+        font: 14px/1.6 var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+      button {
+        font: inherit;
+      }
+      .wrap {
+        max-width: 1640px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* ---------- nav ---------- */
+      .nav {
+        background: var(--paper);
+        border-bottom: 1px solid var(--hair);
+      }
+      .nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+      }
+      .brand img {
+        height: 54px;
+        width: auto;
+        display: block;
+      }
+      .logo-fallback {
+        display: none;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo-fallback b {
+        font: 600 32px/1 var(--serif);
+      }
+      .logo-fallback small {
+        display: block;
+        font: 11px var(--sans);
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+      .nav-tag {
+        font-size: 11px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        padding: 30px 0 30px;
+        position: relative;
+      }
+      .hero .wrap {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--orange-deep);
+        font-weight: 600;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 44px;
+        height: 1px;
+        background: var(--orange);
+      }
+      h1 {
+        margin: 16px 0 10px;
+        font: 500 clamp(34px, 4.4vw, 58px)/1.08 var(--serif);
+        letter-spacing: -0.01em;
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--orange);
+      }
+      .lede {
+        margin: 0;
+        max-width: 520px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+      .stats {
+        display: flex;
+        gap: 0;
+      }
+      .stat {
+        padding: 4px 36px;
+        border-left: 1px solid var(--hair);
+      }
+      .stat:first-child {
+        padding-left: 0;
+        border-left: 0;
+      }
+      .stat:last-child {
+        padding-right: 0;
+      }
+      .stat small {
+        display: block;
+        font-size: 10.5px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .stat b {
+        display: block;
+        margin-top: 4px;
+        font: 500 34px/1.15 var(--serif);
+        font-variant-numeric: lining-nums;
+      }
+
+      /* ---------- toolbar ---------- */
+      .bar {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: rgba(251, 249, 245, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--hair);
+        border-bottom: 1px solid var(--hair);
+      }
+      .bar .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+      }
+      .field {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .field > span {
+        font-size: 10.5px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .bar select,
+      .bar input {
+        height: 40px;
+        padding: 0 16px;
+        border: 1px solid var(--hair);
+        border-radius: 999px;
+        background: var(--paper);
+        color: var(--ink);
+        font: inherit;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+      }
+      .bar input[type="number"] {
+        width: 118px;
+      }
+      .bar select:focus,
+      .bar input:focus {
+        outline: 0;
+        border-color: var(--orange);
+        box-shadow: 0 0 0 3px rgba(242, 140, 30, 0.18);
+      }
+      .spacer {
+        flex: 1;
+      }
+      .showing {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .showing b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .ghost {
+        height: 40px;
+        padding: 0 20px;
+        border-radius: 999px;
+        border: 1px solid var(--ink);
+        background: transparent;
+        color: var(--ink);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        transition: all 0.18s;
+      }
+      .ghost:hover {
+        background: var(--ink);
+        color: #fff;
+      }
+
+      /* ---------- gallery ---------- */
+      main {
+        max-width: 1640px;
+        margin: 0 auto;
+        padding: 44px 40px 24px;
+        display: grid;
+        gap: 44px 28px;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      @media (max-width: 1400px) {
+        main {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 1160px) {
+        main {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 860px) {
+        main {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 32px 20px;
+        }
+        .stats {
+          width: 100%;
+        }
+        .nav-tag {
+          display: none;
+        }
+      }
+      @media (max-width: 600px) {
+        .wrap,
+        main {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+        main {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 26px 14px;
+        }
+        .hero {
+          padding: 40px 0 28px;
+        }
+        .stat {
+          padding: 4px 18px;
+        }
+        .stat b {
+          font-size: 26px;
+        }
+        .nav .wrap {
+          height: 70px;
+        }
+        .brand img {
+          height: 44px;
+        }
+      }
+
+      .card {
+        cursor: pointer;
+        animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        animation-delay: calc(var(--i) * 30ms);
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .photo {
+        position: relative;
+        aspect-ratio: 4/5;
+        background: #efeae0;
+        overflow: hidden;
+        border-radius: 3px;
+        box-shadow:
+          0 1px 2px rgba(18, 18, 18, 0.06),
+          0 10px 24px -12px rgba(18, 18, 18, 0.25);
+      }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .card:hover .photo img {
+        transform: scale(1.07);
+      }
+      .photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 55%,
+          rgba(18, 18, 18, 0.38)
+        );
+        opacity: 0;
+        transition: opacity 0.35s;
+      }
+      .card:hover .photo::after {
+        opacity: 1;
+      }
+      .view {
+        position: absolute;
+        left: 16px;
+        bottom: 14px;
+        z-index: 1;
+        color: #fff;
+        font-size: 10.5px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: all 0.35s;
+      }
+      .card:hover .view {
+        opacity: 1;
+        transform: none;
+      }
+      .cap {
+        padding: 16px 2px 0;
+      }
+      .idx {
+        font-size: 10.5px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .price {
+        display: inline-block;
+        margin-top: 3px;
+        font: 500 23px/1.2 var(--serif);
+        font-variant-numeric: lining-nums tabular-nums;
+        position: relative;
+        padding-bottom: 9px;
+      }
+      .price::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 26px;
+        height: 2px;
+        background: var(--orange);
+        transition: width 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .card:hover .price::after {
+        width: 100%;
+      }
+      .price.na {
+        font: 400 13px var(--sans);
+        color: var(--muted);
+      }
+      .price.na::after {
+        display: none;
+      }
+
+      .empty {
+        grid-column: 1/-1;
+        text-align: center;
+        color: var(--muted);
+        padding: 100px 24px;
+        border: 1px solid var(--hair);
+        background: var(--paper);
+      }
+
+      /* ---------- load more ---------- */
+      .more-wrap {
+        text-align: center;
+        padding: 28px 40px 84px;
+      }
+      .more-wrap[hidden] {
+        display: none;
+      }
+      .more {
+        height: 52px;
+        padding: 0 40px;
+        border: 1px solid var(--ink);
+        background: transparent;
+        color: var(--ink);
+        border-radius: 999px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .more:hover {
+        background: var(--ink);
+        color: #fff;
+        letter-spacing: 0.2em;
+      }
+      .more small {
+        margin-left: 10px;
+        letter-spacing: 0.04em;
+        text-transform: none;
+        opacity: 0.6;
+        font-size: 12px;
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        background: var(--ink);
+        color: #cfc9bf;
+        padding: 34px 0;
+        border-top: 3px solid var(--orange);
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: left;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        letter-spacing: 0.06em;
+      }
+      footer b {
+        font: 500 18px var(--serif);
+        color: #fff;
+        letter-spacing: 0.02em;
+      }
+
+      /* ---------- lightbox ---------- */
+      #lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(14, 13, 12, 0.94);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 18px;
+        padding: 28px;
+        z-index: 20;
+      }
+      #lightbox.open {
+        display: flex;
+        animation: fade 0.25s ease;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      #lightbox img {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 3px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      }
+      #lightbox p {
+        color: #fff;
+        margin: 0;
+        font: 500 26px var(--serif);
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+      }
+      #lightbox p span {
+        color: var(--orange);
+        font: 500 11px var(--sans);
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+      .lb-btn {
+        position: absolute;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .lb-btn:hover {
+        background: var(--orange);
+        border-color: var(--orange);
+      }
+      #lbPrev {
+        left: 26px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      #lbNext {
+        right: 26px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      #lbClose {
+        right: 26px;
+        top: 26px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap">
+        <div class="brand">
+          <img
+            id="logo"
+            src="Logo.png"
+            alt="Avaniysh Interior Solutions (OPC) Pvt. Ltd."
+          />
+          <div class="logo-fallback" id="logoFallback">
+            <svg width="44" height="50" viewBox="0 0 46 52" aria-hidden="true">
+              <polygon
+                points="23,2 43,13 43,39 23,50 3,39 3,13"
+                fill="#F28C1E"
+              />
+              <text
+                x="23"
+                y="35"
+                text-anchor="middle"
+                font-family="Georgia,serif"
+                font-weight="700"
+                font-size="26"
+                fill="#fff"
+              >
+                A
+              </text>
+            </svg>
+            <div>
+              <b>Avaniysh</b><small>Interior Solutions (OPC) Pvt. Ltd.</small>
+            </div>
+          </div>
+        </div>
+        <div class="nav-tag">Artifact Collection</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <!-- <div class="eyebrow">Curated Collection</div> -->
+          <h1>Artifact <em>Collection</em></h1>
+          <!-- <p class="lede">
+            A refined selection of pieces from Avaniysh Interior Solutions,
+            presented with their prices.
+          </p> -->
+        </div>
+        <div class="stats">
+          <div class="stat"><small>Pieces</small><b id="count">0</b></div>
+          <div class="stat"><small>Total value</small><b id="total">₹0</b></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="bar">
+      <div class="wrap">
+        <label class="field"
+          ><span>Sort</span>
+          <select id="sort" autocomplete="off">
+            <option value="file">Original order</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+          </select>
+        </label>
+        <label class="field"
+          ><span>Price</span>
+          <input
+            type="number"
+            id="min"
+            placeholder="Min ₹"
+            min="0"
+            autocomplete="off"
+          />
+          <input
+            type="number"
+            id="max"
+            placeholder="Max ₹"
+            min="0"
+            autocomplete="off"
+          />
+        </label>
+        <div class="spacer"></div>
+        <span class="showing" id="showing"></span>
+        <button class="ghost" id="refresh" type="button">Refresh</button>
+      </div>
+    </div>
+
+    <main id="grid">
+      <div class="empty">Loading photos...</div>
+    </main>
+
+    <div class="more-wrap" id="moreWrap" hidden>
+      <button class="more" id="loadMore" type="button">Load more</button>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <b>Avaniysh</b>
+        <span
+          >© <span id="year"></span> Avaniysh Interior Solutions (OPC) Pvt.
+          Ltd.</span
+        >
+      </div>
+    </footer>
+
+    <div id="lightbox">
+      <button class="lb-btn" id="lbClose" type="button" aria-label="Close">
+        &times;
+      </button>
+      <button class="lb-btn" id="lbPrev" type="button" aria-label="Previous">
+        &lsaquo;
+      </button>
+      <button class="lb-btn" id="lbNext" type="button" aria-label="Next">
+        &rsaquo;
+      </button>
+      <img alt="" />
+      <p></p>
+    </div>
+
+    <script>
+      /* Photos are read from the Images folder next to this file (open with VS Code Live Server).
+   The price comes from each photo's file name:
+     1500.jpg -> ₹1,500    Vase 1500.jpg -> ₹1,500    lamp - 3200.jpeg -> ₹3,200
+     2500 (2).jpg -> ₹2,500 (a trailing "(2)" copy number is ignored)
+   Logo: Logo.png in the same folder as this file. */
+
+      const IMAGE_FOLDER = "Images/";
+      const PAGE_SIZE = 50; // photos shown first, and added by each "Load more" click
+      const fmt = (n) =>
+        "₹" + Number(n).toLocaleString("en-IN", { maximumFractionDigits: 2 });
+      const IMG = /\.(jpe?g|png|webp|gif|avif|bmp)$/i;
+      const $ = (id) => document.getElementById(id);
+      const grid = $("grid"),
+        lightbox = $("lightbox");
+
+      let items = [];
+      let shown = PAGE_SIZE;
+      let shownList = [];
+      let lbIndex = -1;
+      let loadError = false;
+
+      $("year").textContent = new Date().getFullYear();
+      $("logo").addEventListener("error", (e) => {
+        e.target.style.display = "none";
+        $("logoFallback").style.display = "flex";
+      });
+
+      function priceFrom(fileName) {
+        const stem = fileName
+          .replace(/\.[^.]+$/, "")
+          .replace(/\s*\(\d+\)\s*$/, "");
+        const m = stem.match(/(\d[\d,]*(?:\.\d+)?)(?!.*\d)/);
+        return m ? parseFloat(m[1].replace(/,/g, "")) : null;
+      }
+
+      /* The list is rebuilt from scratch each time, so refreshing never duplicates photos
+   and photos added later appear automatically. */
+      async function loadImages() {
+        try {
+          // Needs http(s), i.e. VS Code Live Server; a plain double-clicked file cannot read the folder.
+          if (!window.location.protocol.startsWith("http"))
+            throw new Error("Not served over http");
+          const res = await fetch(IMAGE_FOLDER, {
+            headers: { Accept: "text/html" },
+            cache: "no-store",
+          });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const doc = new DOMParser().parseFromString(
+            await res.text(),
+            "text/html",
+          );
+          const seen = new Set();
+          const found = [];
+          for (const a of doc.querySelectorAll("a[href]")) {
+            const url = new URL(a.getAttribute("href"), res.url);
+            const name = decodeURIComponent(url.pathname.split("/").pop());
+            if (!IMG.test(name) || seen.has(url.pathname)) continue;
+            seen.add(url.pathname);
+            found.push({ name, src: url.href });
+          }
+          found.sort((a, b) =>
+            a.name.localeCompare(b.name, undefined, { numeric: true }),
+          );
+          items = found.map((f, i) => ({
+            n: i + 1,
+            src: f.src,
+            price: priceFrom(f.name),
+          }));
+          loadError = false;
+        } catch (e) {
+          items = [];
+          loadError = true;
+        }
+        render();
+      }
+
+      function visible() {
+        const min = parseFloat($("min").value);
+        const max = parseFloat($("max").value);
+        const sort = $("sort").value;
+        const list = items.filter(
+          (a) =>
+            (isNaN(min) || (a.price != null && a.price >= min)) &&
+            (isNaN(max) || (a.price != null && a.price <= max)),
+        );
+        const cmp = (d) => (a, b) =>
+          a.price == null
+            ? b.price == null
+              ? 0
+              : 1
+            : b.price == null
+              ? -1
+              : (a.price - b.price) * d;
+        if (sort === "price-asc") list.sort(cmp(1));
+        if (sort === "price-desc") list.sort(cmp(-1));
+        return list;
+      }
+
+      function render() {
+        const list = visible();
+        shownList = list.slice(0, shown);
+        grid.replaceChildren();
+
+        if (!list.length) {
+          const d = document.createElement("div");
+          d.className = "empty";
+          d.textContent = loadError
+            ? "Could not read the Images folder. Open this page with VS Code Live Server (right-click the file > Open with Live Server) and keep the Images folder next to it."
+            : items.length
+              ? "No pieces match the price filter."
+              : "No photos found in the Images folder.";
+          grid.append(d);
+        }
+
+        shownList.forEach((a, i) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.style.setProperty("--i", i % 12);
+          const photo = document.createElement("div");
+          photo.className = "photo";
+          const img = document.createElement("img");
+          img.src = a.src;
+          img.alt = "Artifact " + a.n;
+          img.loading = "lazy";
+          const view = document.createElement("span");
+          view.className = "view";
+          view.textContent = "View piece";
+          photo.append(img, view);
+          const cap = document.createElement("div");
+          cap.className = "cap";
+          const idx = document.createElement("div");
+          idx.className = "idx";
+          idx.textContent = "No. " + String(a.n).padStart(2, "0");
+          const price = document.createElement("span");
+          price.className = "price" + (a.price == null ? " na" : "");
+          price.textContent = a.price == null ? "Price not set" : fmt(a.price);
+          cap.append(idx, price);
+          card.append(photo, cap);
+          card.addEventListener("click", () => openLightbox(i));
+          grid.append(card);
+        });
+
+        const remaining = list.length - shownList.length;
+        $("moreWrap").hidden = remaining <= 0;
+        $("loadMore").replaceChildren(
+          document.createTextNode("Load more"),
+          Object.assign(document.createElement("small"), {
+            textContent: "(" + remaining + " remaining)",
+          }),
+        );
+        $("showing").replaceChildren(
+          document.createTextNode("Showing "),
+          Object.assign(document.createElement("b"), {
+            textContent: shownList.length,
+          }),
+          document.createTextNode(" of " + list.length),
+        );
+        $("count").textContent = list.length;
+        $("total").textContent = fmt(
+          list.reduce((s, a) => s + (a.price || 0), 0),
+        );
+      }
+
+      /* ---------- lightbox ---------- */
+      function openLightbox(i) {
+        if (!shownList.length) return;
+        lbIndex = (i + shownList.length) % shownList.length;
+        const a = shownList[lbIndex];
+        lightbox.querySelector("img").src = a.src;
+        lightbox
+          .querySelector("p")
+          .replaceChildren(
+            Object.assign(document.createElement("span"), {
+              textContent: "No. " + String(a.n).padStart(2, "0"),
+            }),
+            document.createTextNode(
+              a.price == null ? "Price not set" : fmt(a.price),
+            ),
+          );
+        lightbox.classList.add("open");
+      }
+      const closeLightbox = () => lightbox.classList.remove("open");
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      $("lbClose").addEventListener("click", closeLightbox);
+      $("lbPrev").addEventListener("click", (e) => {
+        e.stopPropagation();
+        openLightbox(lbIndex - 1);
+      });
+      $("lbNext").addEventListener("click", (e) => {
+        e.stopPropagation();
+        openLightbox(lbIndex + 1);
+      });
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") openLightbox(lbIndex - 1);
+        if (e.key === "ArrowRight") openLightbox(lbIndex + 1);
+      });
+
+      /* ---------- controls ---------- */
+      ["sort", "min", "max"].forEach((id) =>
+        $(id).addEventListener("input", () => {
+          shown = PAGE_SIZE;
+          render();
+        }),
+      );
+      $("loadMore").addEventListener("click", () => {
+        shown += PAGE_SIZE;
+        render();
+      });
+
+      function resetFilters() {
+        $("sort").value = "file";
+        $("min").value = "";
+        $("max").value = "";
+        shown = PAGE_SIZE;
+      }
+
+      /* Refresh button and page reload both clear the filters. */
+      $("refresh").addEventListener("click", () => {
+        resetFilters();
+        loadImages();
+      });
+      window.addEventListener("focus", loadImages); // picks up new photos, keeps current filters and loaded count
+      window.addEventListener("pageshow", resetFilters);
+      resetFilters();
+      loadImages();
+    </script>
+  </body>
+</html>
